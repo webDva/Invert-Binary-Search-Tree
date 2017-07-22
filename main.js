@@ -1,7 +1,7 @@
 // ES6 class to represent a regular node
 class NodeRepresentation {
     constructor(data, left = null, right = null) {
-        this.data = data;
+        this.data = data; // The data or value of the node.
         this.left = left; // The keys to the node's left and right children.
         this.right = right;
     }
@@ -12,6 +12,9 @@ class BinarySearchTree {
         this.root = null;
     }
     
+    /*
+     * Used for inserting new data into the BST.
+     */
     insertData(data) {
         const newNode = new NodeRepresentation(data); // Represents new node to insert into the tree.
         
