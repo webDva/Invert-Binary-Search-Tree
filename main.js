@@ -2,8 +2,8 @@
 class NodeRepresentation {
     constructor(data, left = null, right = null) {
         this.data = data; // The data or value of the node.
-        this.left = left; // The keys to the node's left and right children.
-        this.right = right;
+        this.leftNode = left; // The keys to the node's left and right children.
+        this.rightNode = right;
     }
 }
 
@@ -13,13 +13,33 @@ class BinarySearchTree {
     }
     
     /*
-     * Used for inserting new data into the BST.
+     * Used for inserting new data into the BST. I believe that new nodes are inserted in order.
      */
-    insertData(data) {
+    insertData(data) {  
         const newNode = new NodeRepresentation(data); // Represents new node to insert into the tree.
         
-        if (this.root === null) {
-            this.root = newNode; // If the whole tree is empty, the new node will be inserted as the root node.
+        if (this.root === null) {      
+            this.root = newNode; // If the whole tree is empty, the new node will be inserted as the root node.       
+        } else {
+            let currentlySelectedNode = this.root; // currentlySelectedNode is the current node that is being examined and may be the target index of insertion.
+            let parentNode; // Declaring parentNode here so that child nodes can be created.
+            
+            while (true) {      
+                parentNode = currentlySelectedNode; // The new node to be created would be inserted as a child of the current node.  
+                if (data < currentlySelectedNode.data) { // Begin traversing the left sub-children if the current node's value is greater than the new data to be inserted.
+                    currentlySelectedNode = currentlySelectedNode.leftNode; // Let the new node in question be the left child.
+                    if (currentlySelectedNode === null) { // If the left child doesn't exist, this is where the new data will be inserted.
+                        parentNode.leftNode = newNode; // Create a reference in the first node in question during the current iteration that points to our new node we wished to create.
+                        break;
+                    }
+                } else { // This is the same process as above with the exception of using right sub-children instead.               
+                    currentlySelectedNode = currentlySelectedNode.rightNode;
+                    if (currentlySelectedNode === null) {       
+                        parentNode.rightNode = newNode;
+                        break;
+                    }
+                }
+            }
         }
     }
 }
