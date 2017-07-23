@@ -1,4 +1,7 @@
 // ES6 class to represent a regular node
+
+// The node class and the insertion method were taken from this work: https://codepen.io/david_i_smith/pen/egbJjQ
+
 class NodeRepresentation {
     constructor(data, left = null, right = null) {
         this.data = data; // The data or value of the node.
