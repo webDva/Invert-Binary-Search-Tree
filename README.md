@@ -9,8 +9,8 @@ New entries are inserted, I believe, in order, with the left-most sub-trees havi
 
 To learn more, I plan to only use the source code from the above link for tree creation and insertion. Retrieving values and the actual inversion will be left as exercises for me to do.
 
-# The Process
+# The Inversion Algorithm
 
-First step is to create the tree data structure.
+> For every a < b, make a > b
 
-Then, we'll find out how to invert it so that for every a < b the new tree will have a > b.
+First step, after having created a tree data structure, will be to traverse from the root node to the left-most sub-child, collecting parent nodes along the way down.

@@ -51,7 +51,11 @@ class BinarySearchTree {
 
 // From here, I will devise my own value retrieving and other methods for the binary search tree, now that I have a better view of the tree.
 
-function retrieveValue () { // Should I even do this or go straight to inverting? Maybe the latter.
+/**
+ * Inverts a binary search tree.
+ * @returns {BinarySearchTree}
+ */
+function invert (tree) {
     
 }
 
