@@ -12,7 +12,7 @@ class NodeRepresentation {
 
 class BinarySearchTree {
     constructor() {
-        this.root = null;
+        this.rootNode = null;
     }
     
     /*
@@ -21,10 +21,10 @@ class BinarySearchTree {
     insertData(data) {  
         const newNode = new NodeRepresentation(data); // Represents new node to insert into the tree.
         
-        if (this.root === null) {      
-            this.root = newNode; // If the whole tree is empty, the new node will be inserted as the root node.       
+        if (this.rootNode === null) {      
+            this.rootNode = newNode; // If the whole tree is empty, the new node will be inserted as the root node.       
         } else {
-            let currentlySelectedNode = this.root; // currentlySelectedNode is the current node that is being examined and may be the target index of insertion.
+            let currentlySelectedNode = this.rootNode; // currentlySelectedNode is the current node that is being examined and may be the target index of insertion.
             let parentNode; // Declaring parentNode here so that child nodes can be created.
             
             while (true) {      
@@ -56,6 +56,15 @@ class BinarySearchTree {
  * @returns {BinarySearchTree}
  */
 function invert (tree) {
+    // First, retrieve the root node.
+    let currentNode = tree.rootNode;
     
+    // We'll also maintain a variable for keeping track of a currently selected node's parent.
+    let parentNode = null; // null, by the way, because we're at the root node, if you haven't noticed :p
+    
+    // Traverse leftmost, all the way down to the leftmost sub-child.
+    while (currentNode.leftNode != null && currentNode.rightNode != null) { // The condition for ending the loop will be having no children. Note that this is only for the left sub-children.
+        
+    }
 }
 
