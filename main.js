@@ -53,7 +53,8 @@ class BinarySearchTree {
 
 /**
  * Inverts a binary search tree.
- * @returns {BinarySearchTree}
+ * @param {BinarySearchTree} tree The binary search tree to invert.
+ * @returns {BinarySearchTree} The inverted form of the binary search tree.
  */
 function invert (tree) {
     // First, retrieve the root node.
@@ -63,8 +64,17 @@ function invert (tree) {
     let parentNode = null; // null, by the way, because we're at the root node, if you haven't noticed :p
     
     // Traverse leftmost, all the way down to the leftmost sub-child.
-    while (currentNode.leftNode != null && currentNode.rightNode != null) { // The condition for ending the loop will be having no children. Note that this is only for the left sub-children.
+    while (currentNode.leftNode !== null && currentNode.rightNode !== null) { // The condition for ending the loop will be having no children. Note that this is only for the left sub-children.
+        // First save the parent node.
+        if (currentNode !== tree.rootNode) {
+            parentNode = currentNode;
+        }
         
+        // What is the left-most node of a binary search tree in general?
+        
+        // Now to traverse down the left sub children using the current node's left sub-child.
+        currentNode = currentNode.leftNode;
+        continue; // Not collecting nodes? Not putting them into an array for the every a < b clause?
     }
 }
 
