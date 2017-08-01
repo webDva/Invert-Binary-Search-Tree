@@ -57,6 +57,9 @@ class BinarySearchTree {
  * @returns {BinarySearchTree} The inverted form of the binary search tree.
  */
 function invert (tree) {
+    // The new, inverted binary search tree to return.
+    let newBinarySearchTree = new BinarySearchTree;
+    
     // First, retrieve the root node.
     let currentNode = tree.rootNode;
     
@@ -76,5 +79,7 @@ function invert (tree) {
         currentNode = currentNode.leftNode;
         continue; // Not collecting nodes? Not putting them into an array for the every a < b clause?
     }
+    
+    return newBinarySearchTree;
 }
 
