@@ -52,34 +52,30 @@ class BinarySearchTree {
 // From here, I will devise my own value retrieving and other methods for the binary search tree, now that I have a better view of the tree.
 
 /**
- * Inverts a binary search tree.
+ * Inverts a mutable binary search tree.
  * @param {BinarySearchTree} tree The binary search tree to invert.
- * @returns {BinarySearchTree} The inverted form of the binary search tree.
  */
 function invert (tree) {
-    // The new, inverted binary search tree to return.
-    let newBinarySearchTree = new BinarySearchTree;
-    
     // First, retrieve the root node.
     let currentNode = tree.rootNode;
     
     // We'll also maintain a variable for keeping track of a currently selected node's parent.
-    let parentNode = null; // null, by the way, because we're at the root node, if you haven't noticed :p
+    let parentNode;
     
     // Traverse leftmost, all the way down to the leftmost sub-child.
-    while (currentNode.leftNode !== null && currentNode.rightNode !== null) { // The condition for ending the loop will be having no children. Note that this is only for the left sub-children.
-        // First save the parent node.
-        if (currentNode !== tree.rootNode) {
-            parentNode = currentNode;
-        }
+    while (currentNode.leftNode !== null && currentNode.leftNode < currentNode.rightNode) { 
+        // The algorithm makes the assumption that the binary tree is ordered in an ascending fashion.
         
-        // What is the left-most node of a binary search tree in general?
+        // Swap the left and right child nodes, assuming that the left one is the smaller value.
+        // What happens below is that the right child's value is now the first element in the anonymous array, which is
+        // the left child's value. Meanwhile, the left child's value is now, simutaneously, the right child's value.
+        // By creating an anonymous array, saved values are possible, and therefore an exchanging of values is possible.
+        currentNode.rightNode = [currentNode.leftNode, currentNode.leftNode = currentNode.rightNode][0];
         
-        // Now to traverse down the left sub children using the current node's left sub-child.
-        currentNode = currentNode.leftNode;
-        continue; // Not collecting nodes? Not putting them into an array for the every a < b clause?
+        // Now to traverse down the new right child, which still has left childern smaller than the right children.
+        // But, first, save the parent node, just in case (as we're still in the initial solution phase).
+        parentNode = currentNode;
+        currentNode = currentNode.rightNode;
     }
-    
-    return newBinarySearchTree;
 }
 
