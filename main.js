@@ -79,3 +79,14 @@ function invert (tree) {
     }
 }
 
+// Test to see a binary search tree creation:
+
+let tree = new BinarySearchTree();
+
+// Randomly insert 100 new integers.
+for (let i = 0; i < 100; i++) {
+    // Using a common pattern/implementation to generate random integers in Javascript.
+    minimumInteger = Math.ceil(0);
+    maximumInteger = Math.floor(100);
+    tree.insertData(Math.floor(Math.random() * (maximumInteger - minimumInteger)) + minimumInteger);
+}
