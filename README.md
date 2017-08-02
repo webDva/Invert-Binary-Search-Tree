@@ -15,9 +15,9 @@ To learn more, I plan to only use the source code from the above link for tree c
 
 The above statement was the basis for my initial idea, but I deviated a little from that.
 
-First step, after having created a tree data structure, will be to traverse from the root node to the left-most sub-child, ~~collecting parent nodes along the way down.~~
+~~First step, after having created a tree data structure, will be to traverse from the root node to the left-most sub-child, collecting parent nodes along the way down.~~
 
-I initially was going to traverse downward, then upward, collecting nodes during downward traversal. But I instead chose to simply swap left and right sub-child nodes.
+I initially was going to traverse downward, then upward, collecting nodes during the downward traversal. But I instead chose to simply swap left and right sub-child nodes.
 
 # The function itself
 
