@@ -56,14 +56,12 @@ class BinarySearchTree {
  * @param {BinarySearchTree} tree The binary search tree to invert.
  */
 function invert(tree) {
-    // First, retrieve the root node.
-    let currentNode = tree.rootNode;
-
     // Create an array that will store all nodes.
     let allNodes = [];
 
     // Store all nodes into the array.
     allNodes.push(currentNode);
+    let currentNode = tree.rootNode;
     let parentNode = null;
     let traversingLeft = true;
     while (currentNode.leftNode || currentNode.rightNode) {
@@ -83,15 +81,9 @@ function invert(tree) {
         }
     }
 
-    // Traverse leftmost, all the way down to the leftmost sub-child.
-    while (currentNode.leftNode !== null && currentNode.leftNode < currentNode.rightNode) {
-        // The algorithm makes the assumption that the binary tree is ordered in an ascending fashion.
-
-        // Swap the left and right child nodes, assuming that the left one is the smaller value.
-        // What happens below is that the right child's value is now the first element in the anonymous array, which is
-        // the left child's value. Meanwhile, the left child's value is now, simutaneously, the right child's value.
-        // By creating an anonymous array, saved values are possible, and therefore an exchanging of values is possible.
-        currentNode.rightNode = [currentNode.leftNode, currentNode.leftNode = currentNode.rightNode][0];
+    // Using the array of all nodes, swap each node's child nodes.
+    for (let i = 0; i < allNodes.length; i++) {
+        allNodes[i].rightNode = [allNodes[i].leftNode, allNodes[i].leftNode = allNodes[i].rightNode][0];
     }
 }
 
