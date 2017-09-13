@@ -14,20 +14,20 @@ class BinarySearchTree {
     constructor() {
         this.rootNode = null;
     }
-    
+
     /*
      * Used for inserting new data into the BST. I believe that new nodes are inserted in order.
      */
-    insertData(data) {  
+    insertData(data) {
         const newNode = new NodeRepresentation(data); // Represents new node to insert into the tree.
-        
-        if (this.rootNode === null) {      
+
+        if (this.rootNode === null) {
             this.rootNode = newNode; // If the whole tree is empty, the new node will be inserted as the root node.       
         } else {
             let currentlySelectedNode = this.rootNode; // currentlySelectedNode is the current node that is being examined and may be the target index of insertion.
             let parentNode; // Declaring parentNode here so that child nodes can be created.
-            
-            while (true) {      
+
+            while (true) {
                 parentNode = currentlySelectedNode; // The new node to be created would be inserted as a child of the current node.  
                 if (data < currentlySelectedNode.data) { // Begin traversing the left sub-children if the current node's value is greater than the new data to be inserted.
                     currentlySelectedNode = currentlySelectedNode.leftNode; // Let the new node in question be the left child.
@@ -37,7 +37,7 @@ class BinarySearchTree {
                     }
                 } else { // This is the same process as above with the exception of using right sub-children instead.               
                     currentlySelectedNode = currentlySelectedNode.rightNode;
-                    if (currentlySelectedNode === null) {       
+                    if (currentlySelectedNode === null) {
                         parentNode.rightNode = newNode;
                         break;
                     }
@@ -55,27 +55,43 @@ class BinarySearchTree {
  * Inverts a mutable binary search tree.
  * @param {BinarySearchTree} tree The binary search tree to invert.
  */
-function invert (tree) {
+function invert(tree) {
     // First, retrieve the root node.
     let currentNode = tree.rootNode;
-    
-    // We'll also maintain a variable for keeping track of a currently selected node's parent.
-    let parentNode;
-    
+
+    // Create an array that will store all nodes.
+    let allNodes = [];
+
+    // Store all nodes into the array.
+    allNodes.push(currentNode);
+    let parentNode = null;
+    let traversingLeft = true;
+    while (currentNode.leftNode || currentNode.rightNode) {
+        if (traversingLeft && currentNode.leftNode) {
+            allNodes.push(currentNode.leftNode);
+            parentNode = currentNode;
+            currentNode = currentNode.leftNode;
+            continue;
+        } else if (currentNode.rightNode) {
+            allNodes.push(currentNode.rightNode);
+            parentNode = currentNode;
+            traversingLeft = true;
+            currentNode = currentNode.rightNode;
+        } else {
+            traversingLeft = false;
+            currentNode = parentNode;
+        }
+    }
+
     // Traverse leftmost, all the way down to the leftmost sub-child.
-    while (currentNode.leftNode !== null && currentNode.leftNode < currentNode.rightNode) { 
+    while (currentNode.leftNode !== null && currentNode.leftNode < currentNode.rightNode) {
         // The algorithm makes the assumption that the binary tree is ordered in an ascending fashion.
-        
+
         // Swap the left and right child nodes, assuming that the left one is the smaller value.
         // What happens below is that the right child's value is now the first element in the anonymous array, which is
         // the left child's value. Meanwhile, the left child's value is now, simutaneously, the right child's value.
         // By creating an anonymous array, saved values are possible, and therefore an exchanging of values is possible.
         currentNode.rightNode = [currentNode.leftNode, currentNode.leftNode = currentNode.rightNode][0];
-        
-        // Now to traverse down the new right child, which still has left childern smaller than the right children.
-        // But, first, save the parent node, just in case (as we're still in the initial solution phase).
-        parentNode = currentNode;
-        currentNode = currentNode.rightNode;
     }
 }
 

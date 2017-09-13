@@ -11,13 +11,7 @@ To learn more, I plan to only use the source code from the above link for tree c
 
 # The inversion algorithm
 
-> For every a < b, make a > b
-
-The above statement was the basis for my initial idea, but I deviated a little from that.
-
-First step, after having created a tree data structure, will be to traverse from the root node to the left-most sub-child, ~~collecting parent nodes along the way down.~~
-
-I initially was going to traverse downward, then upward, collecting nodes during downward traversal. But I instead chose to simply swap left and right sub-child nodes.
+Before the algorithm can operate on the idea of making `for every a < b, make a > b`, it first searches through the tree for all nodes so that it can store them into an array.
 
 # The function itself
 
