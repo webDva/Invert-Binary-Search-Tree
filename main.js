@@ -60,7 +60,7 @@ function invert(tree) {
     let allNodes = [];
 
     // Store all nodes into the array.
-    allNodes.push(currentNode);
+    allNodes.push(tree.rootNode);
     let currentNode = tree.rootNode;
     let parentNode = null;
     let traversingLeft = true;
@@ -98,3 +98,6 @@ for (let i = 0; i < 100; i++) {
     maximumInteger = Math.floor(100);
     tree.insertData(Math.floor(Math.random() * (maximumInteger - minimumInteger)) + minimumInteger);
 }
+
+// Test to see if inversion algorithm works.
+invert(tree);
