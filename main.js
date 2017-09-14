@@ -83,7 +83,13 @@ function invert(tree) {
 
     // Using the array of all nodes, swap each node's child nodes.
     for (let i = 0; i < allNodes.length; i++) {
-        allNodes[i].rightNode = [allNodes[i].leftNode, allNodes[i].leftNode = allNodes[i].rightNode][0];
+        if (allNodes[i].leftNode && allNodes[i].rightNode && allNodes[i].leftNode.data < allNodes[i].rightNode.data) {
+            allNodes[i].rightNode = [allNodes[i].leftNode, allNodes[i].leftNode = allNodes[i].rightNode][0];
+        } else if (allNodes[i].leftNode && allNodes[i].leftNode.data < allNodes[i].data) {
+            allNodes[i].rightNode = [allNodes[i].leftNode, allNodes[i].leftNode = allNodes[i].rightNode][0];
+        } else if (allNodes[i].rightNode && allNodes[i].data < allNodes[i].rightNode.data) {
+            allNodes[i].rightNode = [allNodes[i].leftNode, allNodes[i].leftNode = allNodes[i].rightNode][0];
+        }
     }
 }
 

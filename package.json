@@ -4,7 +4,10 @@
     "keywords": ["util", "functional", "server", "client", "browser"],
     "author": "jeast",
     "contributors": [],
-    "dependencies": {}, "scripts":{
-"start":"node main.js"}
+    "dependencies": {},
+    "scripts":{
+        "start": "node main.js",
+        "debug": "node --inspect --debug-brk main.js"
+    }
 
 }
