@@ -13,12 +13,15 @@ class NodeRepresentation {
 class BinarySearchTree {
     constructor() {
         this.rootNode = null;
+        this.numberOfNodes = 0;
     }
 
     /*
      * Used for inserting new data into the BST. I believe that new nodes are inserted in order.
      */
     insertData(data) {
+        // Increment the number of nodes this tree has.
+        this.numberOfNodes++;
         const newNode = new NodeRepresentation(data); // Represents new node to insert into the tree.
 
         if (this.rootNode === null) {
@@ -64,16 +67,18 @@ function invert(tree) {
     let currentNode = tree.rootNode;
     let parentNode = null;
     let traversingLeft = true;
-    while (currentNode.leftNode || currentNode.rightNode) {
+    let numberOfNodesTraversed = 0;
+    while (numberOfNodesTraversed !== tree.numberOfNodes) {
         if (traversingLeft && currentNode.leftNode) {
             allNodes.push(currentNode.leftNode);
+            numberOfNodesTraversed++;
             parentNode = currentNode;
             currentNode = currentNode.leftNode;
-            continue;
         } else if (currentNode.rightNode) {
             allNodes.push(currentNode.rightNode);
-            parentNode = currentNode;
+            numberOfNodesTraversed++;
             traversingLeft = true;
+            parentNode = currentNode;
             currentNode = currentNode.rightNode;
         } else {
             traversingLeft = false;
